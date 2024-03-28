@@ -1,13 +1,17 @@
 import { FunctionComponent } from "react";
-import  StyleHeader  from "./style";
-import ButtonSearch from "../buttons";
+import StyleHeader from "./style";
+import Input from "../input/input";
+
 
 const Header: FunctionComponent = () => {
   return (
     <StyleHeader>
-        <h2>Name or Number</h2>
-<input type="text"></input>
-<ButtonSearch text="search"/>
+        <div>
+      <h3>Name or Number</h3>
+      </div>
+      <div>
+      <Input />
+      </div>
     </StyleHeader>
   );
 };

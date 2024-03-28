@@ -1,16 +1,12 @@
-import { FunctionComponent } from "react";
-import  StyleButtonSearch  from "./style";
+import { FunctionComponent, ReactNode } from "react";
+import StyleButtonSearch from "./style";
 
 interface Props {
-    text: string;
+  children: ReactNode; 
 }
 
-const ButtonSearch: FunctionComponent<Props> = ({text}) => {
-    return(
-        <StyleButtonSearch>
-            {text}
-        </StyleButtonSearch>
-    )
-}
+const ButtonSearch: FunctionComponent<Props> = ({ children }) => {
+  return <StyleButtonSearch>{children}</StyleButtonSearch>;
+};
 
 export default ButtonSearch;

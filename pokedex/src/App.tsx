@@ -1,12 +1,13 @@
 import React, { FunctionComponent } from 'react';
 import Header from './components/header';
+import Main from './components/main';
 
 
 const App: FunctionComponent = () => {
   return (
     <div>
       <Header />
-    <h1>Hello world</h1>
+    <Main></Main>
     </div>
   );
 }
