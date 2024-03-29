@@ -3,8 +3,10 @@ import styled from "styled-components";
 const StyleMain = styled.div`
     color: black;
     width: 100%;
-    height: 100vh;
     background-color: orange;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     `;
 
 export default StyleMain;
