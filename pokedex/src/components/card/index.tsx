@@ -1,25 +1,7 @@
 import { FunctionComponent } from "react";
 import {StyleCard, StyleNameUppercase, StylecardImage, StyleCardCategory, StyleCardImageContainer, StyleSingleCategory} from "./stile";
+import Pokemon from "../../interfaces/iPokemon";
 
-interface TypeData {
-  slot: number;
-  type: {
-    name: string;
-    url: string;
-  };
-}
-
-interface Pokemon {
-  id: number;
-  name: string;
-  additionalData?: {
-    sprites: {
-      front_default: string;
-    };
-    id: number;
-    types: TypeData[];
-  };
-}
 
 const Card: FunctionComponent<{ pokemon: Pokemon }> = ({ pokemon }) => {
   return (
