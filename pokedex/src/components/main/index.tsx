@@ -18,32 +18,32 @@ const Main: FunctionComponent = () => {
   useEffect(() => {
     dispatch(fetchData());
   }, [dispatch]);
-    
+
   if (loading) {
     return <h2>Loading...</h2>;
   }
   if (error) {
     return <h2>{error}</h2>;
   }
-    
+
   return (
     <StyleMain>
       {selectedPokemon ? (
-        <PokemonDetails 
-          pokemon={selectedPokemon} 
-          onClose={() => setSelectedPokemon(null)} 
-        /> 
+        <PokemonDetails
+          pokemon={selectedPokemon}
+          onClose={() => setSelectedPokemon(null)}
+        />
       ) : (
         data.map((pokemon) => (
-          <Card 
-            key={pokemon.id} 
-            pokemon={pokemon} 
-            onClick={() => setSelectedPokemon(pokemon)} // Set selectedPokemon when clicked
+          <Card
+            key={pokemon.id}
+            pokemon={pokemon}
+            onClick={() => setSelectedPokemon(pokemon)} 
           />
         ))
       )}
     </StyleMain>
   );
 };
-  
+
 export default Main;

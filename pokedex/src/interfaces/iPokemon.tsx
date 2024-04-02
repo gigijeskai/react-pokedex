@@ -13,6 +13,40 @@ interface TypeData {
       sprites: {
         front_default: string;
       };
+      abilities: [
+        {
+          ability: {
+            name: string;
+          };
+        }
+      ];
+      game_indices: [
+        {
+          version: {
+            name: string;
+          };
+        }
+      ];
+      moves: [
+        {
+          move: {
+            name: string;
+          };
+        }
+      ];
+      species: {
+        name: string;
+      };
+      weight: number;
+height: number;
+      stats: [
+        {
+          base_stat: number;
+          stat: {
+            name: string;
+          };
+        }
+      ];
       id: number;
       types: TypeData[];
     };
@@ -25,7 +59,11 @@ interface TypeData {
 
   interface CardProps {
     pokemon: Pokemon;
-    onClick: () => void; // Corrected type
+    onClick: () => void; 
   }
 
-  export type {Pokemon, PokemonDetailsProps, TypeData, CardProps};
+  interface PokemonStatsProps {
+    pokemon: Pokemon;
+  }
+
+  export type {Pokemon, PokemonDetailsProps, TypeData, CardProps, PokemonStatsProps};

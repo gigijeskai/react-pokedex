@@ -8,7 +8,7 @@ const Card: FunctionComponent<CardProps> = ({ pokemon, onClick }) => {
   
   return (
     <StyleCard>
-    <div key={pokemon.id} onClick={onClick}> {/* Call onClick when the card is clicked */}
+    <div key={pokemon.id} onClick={onClick}> 
       {pokemon.additionalData && (
         <div>
           <StyleCardImageContainer>
