@@ -18,4 +18,14 @@ interface TypeData {
     };
   }
 
-  export default Pokemon;
+  interface PokemonDetailsProps {
+    pokemon: Pokemon;
+  onClose: () => void;
+  }
+
+  interface CardProps {
+    pokemon: Pokemon;
+    onClick: () => void; // Corrected type
+  }
+
+  export type {Pokemon, PokemonDetailsProps, TypeData, CardProps};
