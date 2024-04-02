@@ -11,10 +11,6 @@ const StyleCard = styled.div`
     flex-direction: column;
     `;
     
-    const StylecardImage = styled.img`
-min-width: 200px;
-min-height: 200px;
-    `;
 
     const StyleCardImageContainer = styled.div`
 display: flex;
@@ -36,4 +32,4 @@ gap: 1rem;
     `;
 
 
-    export  {StyleCard, StyleNameUppercase, StylecardImage, StyleCardCategory, StyleSingleCategory, StyleCardImageContainer};
+    export  {StyleCard, StyleNameUppercase, StyleCardCategory, StyleSingleCategory, StyleCardImageContainer};

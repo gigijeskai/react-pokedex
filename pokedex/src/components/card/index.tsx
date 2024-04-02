@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from "react";
-import {StyleCard, StyleNameUppercase, StylecardImage, StyleCardCategory, StyleCardImageContainer, StyleSingleCategory} from "./stile";
-import {Pokemon, CardProps} from "../../interfaces/iPokemon";
+import {StyleCard, StyleNameUppercase, StyleCardCategory, StyleCardImageContainer, StyleSingleCategory} from "./stile";
+import {StylecardImage} from "../imageContainers/styles";
+import { CardProps} from "../../interfaces/iPokemon";
 
 
 const Card: FunctionComponent<CardProps> = ({ pokemon, onClick }) => {
