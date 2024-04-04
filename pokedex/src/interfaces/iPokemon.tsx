@@ -66,4 +66,8 @@ height: number;
     pokemon: Pokemon;
   }
 
-  export type {Pokemon, PokemonDetailsProps, TypeData, CardProps, PokemonStatsProps};
+  interface GraphProps {
+    pokemon: Pokemon;
+  }
+
+  export type {Pokemon, GraphProps, PokemonDetailsProps, TypeData, CardProps, PokemonStatsProps};
