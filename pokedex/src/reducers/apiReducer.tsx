@@ -48,11 +48,9 @@ export const fetchData = () => async (dispatch: AppDispatch) => {
         const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=10&offset=0');
         const pokemonData = response.data.results;
         
-        // Effettua la seconda chiamata API per ogni Pokémon ottenuto dalla prima chiamata
         const additionalDataPromises = pokemonData.map((pokemon: PokemonData) => axios.get(pokemon.url));
         const additionalDataResponses = await Promise.all(additionalDataPromises);
         
-        // Estrai i dati aggiuntivi e combinali con i dati esistenti
         const updatedPokemonData = pokemonData.map((pokemon: PokemonData, index: number) => ({
             ...pokemon,
             additionalData: additionalDataResponses[index].data

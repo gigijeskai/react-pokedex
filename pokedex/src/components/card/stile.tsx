@@ -4,11 +4,11 @@ const StyleCard = styled.div`
     color: black;
     width: 20%;
     margin: 1rem;
-    background-color: green;
     display: flex;
     justify-content: center;
     padding: 1rem;
     flex-direction: column;
+    border: 5px solid black;
     `;
     
 
@@ -17,13 +17,17 @@ display: flex;
 justify-content: center;
     `;
 
-    const StyleCardCategory = styled.div`
-display: flex;
+    const StyleCardCategory = styled.div<{ categoryColor: string }>`
+    display: flex;
 gap: 1rem;
-    `;
+background-color: ${({ categoryColor }) => categoryColor};
+  color: white;
+  padding: 10px; 
+  margin-bottom: 5px; 
+`;
 
     const StyleSingleCategory = styled.div`
-    background-color: yellow;
+   
     padding: 0.5rem;
     `;
 
