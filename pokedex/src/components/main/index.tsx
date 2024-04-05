@@ -2,10 +2,11 @@ import React, { FunctionComponent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import { fetchMoreData  } from "../../reducers/apiReducer";
-import StyleMain from "./style";
+import {StyleMain, StyleLoadPokemonButton} from "./style";
 import Card from "../card";
 import { Pokemon } from "../../interfaces/iPokemon";
 import PokemonDetails from "../pokemonDetails";
+import { StyleCenterDiv } from "../pokemonsStatistics/style";
 
 const Main: FunctionComponent = () => {
   const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null>(null);
@@ -31,6 +32,7 @@ const Main: FunctionComponent = () => {
   }
 
   return (
+    <>
     <StyleMain>
       {selectedPokemon ? (
         <PokemonDetails
@@ -38,18 +40,24 @@ const Main: FunctionComponent = () => {
           onClose={() => setSelectedPokemon(null)}
         />
       ) : (
-        data.map((pokemon) => (
+        <>
+        {data.map((pokemon) => (
           <Card
             key={pokemon.id}
             pokemon={pokemon}
-            onClick={() => setSelectedPokemon(pokemon)} 
+            onClick={() => setSelectedPokemon(pokemon)}
           />
-        ))
-      )}
-                <button onClick={handleLoadMoreClick}>Load More</button>
-
-    </StyleMain>
-  );
+        ))}
+      </>
+    )}
+  </StyleMain>
+  {selectedPokemon ? ( null ) :(
+  <StyleCenterDiv>
+    <StyleLoadPokemonButton onClick={handleLoadMoreClick}>Load More</StyleLoadPokemonButton>
+    </StyleCenterDiv>
+  ) }
+    </>
+);
 };
 
 export default Main;
