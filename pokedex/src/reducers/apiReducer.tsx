@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AppDispatch } from '../store/store';
+import { AppDispatch, RootState } from '../store/store';
 import axios from 'axios';
 
 interface PokemonData {
@@ -42,10 +42,14 @@ const dataSlice = createSlice({
 
 export const { fetchStart, fetchSuccess, fetchFail } = dataSlice.actions;
 
-export const fetchData = () => async (dispatch: AppDispatch) => {
+// Fetch additional Pokémon data
+export const fetchMoreData = () => async (dispatch: AppDispatch, getState: () => RootState) => {
+    const { data } = getState().data;
+    const offset = data.length; // Current number of Pokémon items fetched
+
     dispatch(fetchStart());
     try {
-        const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=10&offset=0');
+        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=10&offset=${offset}`);
         const pokemonData = response.data.results;
         
         const additionalDataPromises = pokemonData.map((pokemon: PokemonData) => axios.get(pokemon.url));
@@ -56,7 +60,7 @@ export const fetchData = () => async (dispatch: AppDispatch) => {
             additionalData: additionalDataResponses[index].data
         }));
 
-        dispatch(fetchSuccess(updatedPokemonData));
+        dispatch(fetchSuccess([...data, ...updatedPokemonData])); // Append new data to existing data
     } catch (error: any) {
         dispatch(fetchFail(error.message));
     }

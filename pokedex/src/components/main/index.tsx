@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
-import { fetchData } from "../../reducers/apiReducer";
+import { fetchMoreData  } from "../../reducers/apiReducer";
 import StyleMain from "./style";
 import Card from "../card";
 import { Pokemon } from "../../interfaces/iPokemon";
@@ -16,8 +16,12 @@ const Main: FunctionComponent = () => {
   );
 
   useEffect(() => {
-    dispatch(fetchData());
+    dispatch(fetchMoreData ());
   }, [dispatch]);
+
+  const handleLoadMoreClick = () => {
+    dispatch(fetchMoreData());
+  };
 
   if (loading) {
     return <h2>Loading...</h2>;
@@ -42,6 +46,8 @@ const Main: FunctionComponent = () => {
           />
         ))
       )}
+                <button onClick={handleLoadMoreClick}>Load More</button>
+
     </StyleMain>
   );
 };
