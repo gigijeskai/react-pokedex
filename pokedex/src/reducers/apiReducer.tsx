@@ -42,10 +42,15 @@ const dataSlice = createSlice({
 
 export const { fetchStart, fetchSuccess, fetchFail } = dataSlice.actions;
 
+
+
+
+
+
 // Fetch additional Pokémon data
 export const fetchMoreData = () => async (dispatch: AppDispatch, getState: () => RootState) => {
     const { data } = getState().data;
-    const offset = data.length; // Current number of Pokémon items fetched
+    const offset = data.length; 
 
     dispatch(fetchStart());
     try {
@@ -66,4 +71,21 @@ export const fetchMoreData = () => async (dispatch: AppDispatch, getState: () =>
     }
 };
 
+
+
+// Fetch Pokémon by name
+
+
+export const fetchPokemonByName = (pokemonName: string): any => async (dispatch: AppDispatch) => {
+    
+    dispatch(fetchStart());
+    try {
+        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName.toLowerCase()}`);
+        const pokemonData = response.data;
+        
+        dispatch(fetchSuccess([pokemonData])); 
+    } catch (error: any) {
+        dispatch(fetchFail(error.message));
+    }
+};
 export default dataSlice.reducer;
