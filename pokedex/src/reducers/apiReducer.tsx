@@ -85,6 +85,7 @@ export const fetchPokemonByName = (pokemonName: string): any => async (dispatch:
     try {
         const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName.toLowerCase()}`);
         const pokemonData = response.data;
+        console.log("reducer " + pokemonData.name);
         
         dispatch(fetchQuery([pokemonData])); 
     } catch (error: any) {
