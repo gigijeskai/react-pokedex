@@ -45,7 +45,9 @@ const Card: FunctionComponent<CardProps> = ({ pokemon, onClick }) => {
 
   return (
     <StyleCard>
+      
     <div key={pokemon.id} onClick={onClick}> 
+    
       {pokemon.additionalData && (
         <div>
           <StyleCardImageContainer>

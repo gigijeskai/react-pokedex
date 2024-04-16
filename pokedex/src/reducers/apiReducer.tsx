@@ -30,6 +30,7 @@ const dataSlice = createSlice({
             state.loading = false;
             state.data = action.payload;
             state.query = null;
+            console.log(state.data);
         },
         fetchFail(state, action: PayloadAction<string>) {
             state.loading = false;
@@ -84,7 +85,6 @@ export const fetchPokemonByName = (pokemonName: string): any => async (dispatch:
     try {
         const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName.toLowerCase()}`);
         const pokemonData = response.data;
-        console.log(pokemonData);
         
         dispatch(fetchQuery([pokemonData])); 
     } catch (error: any) {

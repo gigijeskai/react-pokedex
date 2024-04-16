@@ -43,6 +43,7 @@ const Main: FunctionComponent = () => {
         <>
         {query? (
   query.map((pokemon) => (
+    
     <Card
       key={pokemon.id}
       pokemon={pokemon}
