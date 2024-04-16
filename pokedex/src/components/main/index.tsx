@@ -12,7 +12,7 @@ const Main: FunctionComponent = () => {
   const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null>(null);
 
   const dispatch = useDispatch<AppDispatch>();
-  const { loading, error, data } = useSelector(
+  const { loading, error, data , query} = useSelector(
     (state: RootState) => state.data
   );
 
@@ -41,13 +41,23 @@ const Main: FunctionComponent = () => {
         />
       ) : (
         <>
-        {data.map((pokemon) => (
-          <Card
-            key={pokemon.id}
-            pokemon={pokemon}
-            onClick={() => setSelectedPokemon(pokemon)}
-          />
-        ))}
+        {query? (
+  query.map((pokemon) => (
+    <Card
+      key={pokemon.id}
+      pokemon={pokemon}
+      onClick={() => setSelectedPokemon(pokemon)}
+    />
+  ))
+) : (
+  data.map((pokemon) => (
+    <Card
+      key={pokemon.id}
+      pokemon={pokemon}
+      onClick={() => setSelectedPokemon(pokemon)}
+    />
+  ))
+)}
       </>
     )}
   </StyleMain>

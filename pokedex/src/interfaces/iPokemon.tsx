@@ -70,4 +70,11 @@ height: number;
     pokemon: Pokemon;
   }
 
-  export type {Pokemon, GraphProps, PokemonDetailsProps, TypeData, CardProps, PokemonStatsProps};
+  interface PokemonData {
+    name: string;
+    id: number;
+    url: string;
+    additionalData?: any; // Aggiungi campo per i dati aggiuntivi
+}
+
+  export type {Pokemon, PokemonData, GraphProps, PokemonDetailsProps, TypeData, CardProps, PokemonStatsProps};

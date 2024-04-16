@@ -1,24 +1,21 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppDispatch, RootState } from '../store/store';
 import axios from 'axios';
+import { PokemonData } from '../interfaces/iPokemon';
 
-interface PokemonData {
-    name: string;
-    id: number;
-    url: string;
-    additionalData?: any; // Aggiungi campo per i dati aggiuntivi
-}
 
 interface DataState {
     loading: boolean;
     error: string | null;
     data: PokemonData[];
+    query?:  PokemonData[] | null;
 }
 
 const initialState: DataState = {
     loading: false,
     error: null,
     data: [],
+    query: null,
 };
 
 const dataSlice = createSlice({
@@ -32,15 +29,20 @@ const dataSlice = createSlice({
         fetchSuccess(state, action: PayloadAction<PokemonData[]>) {
             state.loading = false;
             state.data = action.payload;
+            state.query = null;
         },
         fetchFail(state, action: PayloadAction<string>) {
             state.loading = false;
             state.error = action.payload;
         },
+        fetchQuery(state, action: PayloadAction<PokemonData[]>) {
+            state.loading = false;
+            state.query = action.payload;
+    },
     },
 });
 
-export const { fetchStart, fetchSuccess, fetchFail } = dataSlice.actions;
+export const { fetchStart, fetchQuery, fetchSuccess, fetchFail } = dataSlice.actions;
 
 
 
@@ -82,8 +84,9 @@ export const fetchPokemonByName = (pokemonName: string): any => async (dispatch:
     try {
         const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName.toLowerCase()}`);
         const pokemonData = response.data;
+        console.log(pokemonData);
         
-        dispatch(fetchSuccess([pokemonData])); 
+        dispatch(fetchQuery([pokemonData])); 
     } catch (error: any) {
         dispatch(fetchFail(error.message));
     }
