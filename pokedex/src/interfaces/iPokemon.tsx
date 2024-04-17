@@ -9,6 +9,7 @@ interface TypeData {
   interface Pokemon {
     id: number;
     name: string;
+    
     additionalData?: {
       sprites: {
         front_default: string;
@@ -51,6 +52,7 @@ height: number;
       types: TypeData[];
     };
   }
+  
 
   interface PokemonDetailsProps {
     pokemon: Pokemon;

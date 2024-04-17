@@ -21,8 +21,6 @@ const Card: FunctionComponent<CardProps> = ({ pokemon, onClick }) => {
 
   const [pokemonData, setPokemonData] = useState<Pokemon | null>(null);
 
-
-
   const getCategoryColor = (types: Type[]) => {
     const typeColors: TypeColors = {
       grass: "LawnGreen",
@@ -53,7 +51,7 @@ const Card: FunctionComponent<CardProps> = ({ pokemon, onClick }) => {
 
   // Utilizza console.log() per visualizzare i dati nella console del browser
   useEffect(() => {
-    console.log("card " + pokemon.additionalData?.types);
+    console.log("card " + pokemonData?.name);
   }, [pokemon]);
 
   return (
