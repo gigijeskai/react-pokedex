@@ -4,12 +4,13 @@ import { AppDispatch, RootState } from "../../store/store";
 import { fetchMoreData, fetchPokemonByName  } from "../../reducers/apiReducer";
 import {StyleMain, StyleLoadPokemonButton} from "./style";
 import Card from "../card";
-import { Pokemon } from "../../interfaces/iPokemon";
+import CardSearchResult from "../cardSearchResult";
+import { Pokemon, Pokemon2 } from "../../interfaces/iPokemon";
 import PokemonDetails from "../pokemonDetails";
 import { StyleCenterDiv } from "../pokemonsStatistics/style";
 
 const Main: FunctionComponent = () => {
-  const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null>(null);
+  const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null | Pokemon2>(null);
 
   const dispatch = useDispatch<AppDispatch>();
   const { loading, error, data , query} = useSelector(
@@ -45,7 +46,7 @@ const Main: FunctionComponent = () => {
   query.map((pokemon) => (
     console.log(pokemon),
     
-    <Card
+    <CardSearchResult
       key={pokemon.id}
       pokemon={pokemon}
       onClick={() => setSelectedPokemon(pokemon)}

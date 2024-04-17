@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
-import {StyleCard, StyleNameUppercase, StyleCardCategory, StyleCardImageContainer, StyleSingleCategory} from "./stile";
+import {StyleCard, StyleNameUppercase, StyleCardCategory, StyleCardImageContainer, StyleSingleCategory} from "../card/stile";
 import {StylecardImage} from "../imageContainers/styles";
-import { CardProps, Pokemon, Pokemon2} from "../../interfaces/iPokemon";
+import {  CardProps2, Pokemon2} from "../../interfaces/iPokemon";
 
 interface Type {
   type: {
@@ -13,13 +13,13 @@ interface TypeColors {
   [key: string]: string;
 }
 
-const Card: FunctionComponent<CardProps> = ({ pokemon, onClick }) => {
+const Card: FunctionComponent<CardProps2> = ({ pokemon, onClick }) => {
   
   useEffect(() => {
     setPokemonData(pokemon);
   }, [pokemon]);
 
-  const [pokemonData, setPokemonData] = useState<Pokemon | null | Pokemon2>(null);
+  const [pokemonData, setPokemonData] = useState<Pokemon2 | null>(null);
 
   const getCategoryColor = (types: Type[]) => {
     const typeColors: TypeColors = {
@@ -60,14 +60,14 @@ const Card: FunctionComponent<CardProps> = ({ pokemon, onClick }) => {
           <div>
             <StyleCardImageContainer>
               <StylecardImage
-                src={pokemon.additionalData?.sprites.front_default}
+                src={pokemon.sprites.front_default}
                 alt={pokemon.name}
               />
             </StyleCardImageContainer>
-            <p>N° {pokemon.additionalData?.id}</p>
+            <p>N° {pokemon.id}</p>
 <h4><StyleNameUppercase>{pokemon.name}</StyleNameUppercase></h4>
-<StyleCardCategory categoryColor={pokemon.additionalData?.types ? getCategoryColor(pokemon.additionalData.types) : 'defaultColor'}>
-  {pokemon.additionalData?.types.map((type) => (
+<StyleCardCategory categoryColor={pokemon.types ? getCategoryColor(pokemon.types) : 'defaultColor'}>
+  {pokemon.types.map((type) => (
     <StyleSingleCategory key={type.slot}>
       <StyleNameUppercase>{type.type.name}</StyleNameUppercase>
     </StyleSingleCategory>
