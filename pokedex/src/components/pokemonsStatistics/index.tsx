@@ -1,39 +1,43 @@
-import React, {FunctionComponent} from "react";
+import React, { FunctionComponent, useEffect, useState } from "react";
 import {StylePokemonsStatistics, StyleType, BlueDiv, WhiteText, StyleCenterDiv, StyleAbility} from "./style";
-import { PokemonStatsProps } from "../../interfaces/iPokemon";
+import { PokemonStatsProps, Pokemon, Pokemon2 } from "../../interfaces/iPokemon";
 import  Graph  from "../graph";
 import { StyleNameUppercase } from "../card/stile";
 
 const PokemonsStatistics: FunctionComponent<PokemonStatsProps> = ({pokemon}) => {
   return (
     <StylePokemonsStatistics>
-        <h3>Stats</h3>
-        <Graph pokemon={pokemon} />
-            
-        {/* <h3>Game version</h3>
-        <ul>
-            {pokemon.additionalData?.game_indices.map((game) => (
-            <li key={game.version.name}>{game.version.name}</li>
-            ))}
-        </ul> */}
-        <StyleCenterDiv>
-        <BlueDiv>
-<WhiteText>Height</WhiteText>
-<p>{pokemon.additionalData?.height}</p>
-<WhiteText>Weigth</WhiteText>
-<p>{pokemon.additionalData?.weight}</p>
-<WhiteText>Ability</WhiteText>
-<StyleAbility>
-{pokemon.additionalData?.abilities.map((ability) => 
-<p>{ability.ability.name}</p>)}
-</StyleAbility>
-        </BlueDiv>
-        </StyleCenterDiv>
-        <h3>Type</h3>
-        <StyleType>{pokemon.additionalData?.types.map((type) => (
-           <StyleNameUppercase> <p key={type.type.name}>{type.type.name}</p></StyleNameUppercase>
-        ))}</StyleType>
-    </StylePokemonsStatistics>
+    <h3>Stats</h3>
+    <Graph pokemon={pokemon} />
+    <StyleCenterDiv>
+      <BlueDiv>
+        <WhiteText>Height</WhiteText>
+        <p>{(pokemon as Pokemon).additionalData?.height || (pokemon as Pokemon2).height}</p>
+        <WhiteText>Weight</WhiteText>
+        <p>{(pokemon as Pokemon).additionalData?.weight || (pokemon as Pokemon2).weight}</p>
+        <WhiteText>Abilities</WhiteText>
+        <StyleAbility>
+          {(pokemon as Pokemon).additionalData?.abilities.map((ability) => (
+            <p key={ability.ability.name}>{ability.ability.name}</p>
+          )) || (pokemon as Pokemon2).abilities.map((ability) => (
+            <p key={ability.ability.name}>{ability.ability.name}</p>
+          ))}
+        </StyleAbility>
+      </BlueDiv>
+    </StyleCenterDiv>
+    <h3>Type</h3>
+    <StyleType>
+      {(pokemon as Pokemon).additionalData?.types.map((type) => (
+        <StyleNameUppercase key={type.type.name}>
+          <p>{type.type.name}</p>
+        </StyleNameUppercase>
+      )) || (pokemon as Pokemon2).types.map((type) => (
+        <StyleNameUppercase key={type.type.name}>
+          <p>{type.type.name}</p>
+        </StyleNameUppercase>
+      ))}
+    </StyleType>
+  </StylePokemonsStatistics>
   )
 };
 

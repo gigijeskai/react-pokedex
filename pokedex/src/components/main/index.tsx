@@ -46,7 +46,7 @@ const Main: FunctionComponent = () => {
   query.map((pokemon) => (
     console.log(pokemon),
     
-    <CardSearchResult
+    <Card
       key={pokemon.id}
       pokemon={pokemon}
       onClick={() => setSelectedPokemon(pokemon)}

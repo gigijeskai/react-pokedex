@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
 import {StyleCard, StyleNameUppercase, StyleCardCategory, StyleCardImageContainer, StyleSingleCategory} from "./stile";
 import {StylecardImage} from "../imageContainers/styles";
-import { CardProps, Pokemon, Pokemon2} from "../../interfaces/iPokemon";
+import { CardProps, CardProps2, Pokemon, Pokemon2} from "../../interfaces/iPokemon";
 
 interface Type {
   type: {
@@ -49,32 +49,31 @@ const Card: FunctionComponent<CardProps> = ({ pokemon, onClick }) => {
     return firstTypeColor;
   };
 
-  // Utilizza console.log() per visualizzare i dati nella console del browser
-  useEffect(() => {
-    console.log("card " + pokemonData?.name);
-  }, [pokemon]);
+  
 
   return (
     <StyleCard>
-      <div key={pokemon.id} onClick={onClick}> 
-          <div>
-            <StyleCardImageContainer>
-              <StylecardImage
-                src={pokemon.additionalData?.sprites.front_default}
-                alt={pokemon.name}
-              />
-            </StyleCardImageContainer>
-            <p>N° {pokemon.additionalData?.id}</p>
-<h4><StyleNameUppercase>{pokemon.name}</StyleNameUppercase></h4>
-<StyleCardCategory categoryColor={pokemon.additionalData?.types ? getCategoryColor(pokemon.additionalData.types) : 'defaultColor'}>
-  {pokemon.additionalData?.types.map((type) => (
-    <StyleSingleCategory key={type.slot}>
-      <StyleNameUppercase>{type.type.name}</StyleNameUppercase>
-    </StyleSingleCategory>
-  ))}
-</StyleCardCategory>
-          </div>
-        
+      <div key={pokemon.id} onClick={onClick}>
+        <div>
+          <StyleCardImageContainer>
+            <StylecardImage
+              src={(pokemon as Pokemon).additionalData?.sprites.front_default || (pokemon as Pokemon2).sprites.front_default}
+              alt={pokemon.name}
+            />
+          </StyleCardImageContainer>
+          <p>N° {(pokemon as Pokemon).additionalData?.id || (pokemon as Pokemon2).id}</p>
+          <h4><StyleNameUppercase>{pokemon.name}</StyleNameUppercase></h4>
+          <StyleCardCategory 
+  categoryColor={(pokemon as Pokemon)?.additionalData?.types ? 
+    getCategoryColor((pokemon as Pokemon).additionalData?.types!) : 
+    getCategoryColor((pokemon as Pokemon2).types)}
+>            {((pokemon as Pokemon).additionalData?.types || (pokemon as Pokemon2).types)?.map((type) => (
+              <StyleSingleCategory key={type.slot}>
+                <StyleNameUppercase>{type.type.name}</StyleNameUppercase>
+              </StyleSingleCategory>
+            ))}
+          </StyleCardCategory>
+        </div>
       </div>
     </StyleCard>
   );
