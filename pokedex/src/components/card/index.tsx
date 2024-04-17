@@ -21,7 +21,6 @@ const Card: FunctionComponent<CardProps> = ({ pokemon, onClick }) => {
 
   const [pokemonData, setPokemonData] = useState<Pokemon | null>(null);
 
-  const hasAdditionalData = !!pokemon.additionalData;
 
 
   const getCategoryColor = (types: Type[]) => {
@@ -60,7 +59,6 @@ const Card: FunctionComponent<CardProps> = ({ pokemon, onClick }) => {
   return (
     <StyleCard>
       <div key={pokemon.id} onClick={onClick}> 
-        {hasAdditionalData && (
           <div>
             <StyleCardImageContainer>
               <StylecardImage
@@ -68,7 +66,7 @@ const Card: FunctionComponent<CardProps> = ({ pokemon, onClick }) => {
                 alt={pokemon.name}
               />
             </StyleCardImageContainer>
-            <p>N° {pokemon.additionalData?.id}</p>
+            <p>N° {pokemon.id}</p>
 <h4><StyleNameUppercase>{pokemon.name}</StyleNameUppercase></h4>
 <StyleCardCategory categoryColor={pokemon.additionalData?.types ? getCategoryColor(pokemon.additionalData.types) : 'defaultColor'}>
   {pokemon.additionalData?.types.map((type) => (
@@ -78,11 +76,7 @@ const Card: FunctionComponent<CardProps> = ({ pokemon, onClick }) => {
   ))}
 </StyleCardCategory>
           </div>
-        )}
-        {!hasAdditionalData && (
-          // Gestione caso in cui i dati aggiuntivi non sono disponibili
-          <div>Loading additional data...</div>
-        )}
+        
       </div>
     </StyleCard>
   );
