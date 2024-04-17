@@ -4,7 +4,6 @@ import { AppDispatch, RootState } from "../../store/store";
 import { fetchMoreData, fetchPokemonByName  } from "../../reducers/apiReducer";
 import {StyleMain, StyleLoadPokemonButton} from "./style";
 import Card from "../card";
-import CardSearchResult from "../cardSearchResult";
 import { Pokemon, Pokemon2 } from "../../interfaces/iPokemon";
 import PokemonDetails from "../pokemonDetails";
 import { StyleCenterDiv } from "../pokemonsStatistics/style";
