@@ -6,26 +6,26 @@ import { useDispatch } from "react-redux";
 import { fetchPokemonByName } from "../../reducers/apiReducer";
 
 const Input: FunctionComponent = () => {
-  const [inputValue, setInputValue] = useState(""); 
+  const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch();
 
-const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  setInputValue(event.target.value);
-}
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+  };
 
-const handleButtonClick = () => {
-  dispatch(fetchPokemonByName(inputValue)); 
-  setInputValue("");
-  }
+  const handleButtonClick = () => {
+    dispatch(fetchPokemonByName(inputValue));
+    setInputValue("");
+  };
 
-    return (
-        <div>
-            <input type="text" value={inputValue} onChange={handleInputChange} />
-        <ButtonSearch onClick={handleButtonClick}>
+  return (
+    <div>
+      <input type="text" value={inputValue} onChange={handleInputChange} />
+      <ButtonSearch onClick={handleButtonClick}>
         <FontAwesomeIcon icon={faSearch} />
       </ButtonSearch>
-        </div>
-    );
-    }
+    </div>
+  );
+};
 
-    export default Input;
+export default Input;

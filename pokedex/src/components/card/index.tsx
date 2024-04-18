@@ -85,7 +85,6 @@ const Card: FunctionComponent<CardProps> = ({ pokemon, onClick }) => {
                 : getCategoryColor((pokemon as Pokemon2).types)
             }
           >
-            
             {(
               (pokemon as Pokemon).additionalData?.types ||
               (pokemon as Pokemon2).types
