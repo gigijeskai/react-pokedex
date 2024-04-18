@@ -15,6 +15,7 @@ const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 
 const handleButtonClick = () => {
   dispatch(fetchPokemonByName(inputValue)); 
+  setInputValue("");
   }
 
     return (

@@ -1,7 +1,13 @@
-import React, { FunctionComponent, useEffect, useState } from "react";
-import {StyleCard, StyleNameUppercase, StyleCardCategory, StyleCardImageContainer, StyleSingleCategory} from "./stile";
-import {StylecardImage} from "../imageContainers/styles";
-import { CardProps, CardProps2, Pokemon, Pokemon2} from "../../interfaces/iPokemon";
+import { FunctionComponent, useEffect, useState } from "react";
+import {
+  StyleCard,
+  StyleNameUppercase,
+  StyleCardCategory,
+  StyleCardImageContainer,
+  StyleSingleCategory,
+} from "./stile";
+import { StylecardImage } from "../imageContainers/styles";
+import { CardProps, Pokemon, Pokemon2 } from "../../interfaces/iPokemon";
 
 interface Type {
   type: {
@@ -14,12 +20,13 @@ interface TypeColors {
 }
 
 const Card: FunctionComponent<CardProps> = ({ pokemon, onClick }) => {
-  
   useEffect(() => {
     setPokemonData(pokemon);
   }, [pokemon]);
 
-  const [pokemonData, setPokemonData] = useState<Pokemon | null | Pokemon2>(null);
+  const [pokemonData, setPokemonData] = useState<Pokemon | null | Pokemon2>(
+    null
+  );
 
   const getCategoryColor = (types: Type[]) => {
     const typeColors: TypeColors = {
@@ -43,13 +50,12 @@ const Card: FunctionComponent<CardProps> = ({ pokemon, onClick }) => {
       normal: "gray",
       default: "gray",
     };
-  
-    const firstTypeColor = typeColors[types[0]?.type.name] || typeColors.default;
-  
+
+    const firstTypeColor =
+      typeColors[types[0]?.type.name] || typeColors.default;
+
     return firstTypeColor;
   };
-
-  
 
   return (
     <StyleCard>
@@ -57,17 +63,33 @@ const Card: FunctionComponent<CardProps> = ({ pokemon, onClick }) => {
         <div>
           <StyleCardImageContainer>
             <StylecardImage
-              src={(pokemon as Pokemon).additionalData?.sprites.front_default || (pokemon as Pokemon2).sprites.front_default}
+              src={
+                (pokemon as Pokemon).additionalData?.sprites.front_default ||
+                (pokemon as Pokemon2).sprites.front_default
+              }
               alt={pokemon.name}
             />
           </StyleCardImageContainer>
-          <p>N° {(pokemon as Pokemon).additionalData?.id || (pokemon as Pokemon2).id}</p>
-          <h4><StyleNameUppercase>{pokemon.name}</StyleNameUppercase></h4>
-          <StyleCardCategory 
-  categoryColor={(pokemon as Pokemon)?.additionalData?.types ? 
-    getCategoryColor((pokemon as Pokemon).additionalData?.types!) : 
-    getCategoryColor((pokemon as Pokemon2).types)}
->            {((pokemon as Pokemon).additionalData?.types || (pokemon as Pokemon2).types)?.map((type) => (
+          <p>
+            N°{" "}
+            {(pokemon as Pokemon).additionalData?.id ||
+              (pokemon as Pokemon2).id}
+          </p>
+          <h4>
+            <StyleNameUppercase>{pokemon.name}</StyleNameUppercase>
+          </h4>
+          <StyleCardCategory
+            categoryColor={
+              (pokemon as Pokemon)?.additionalData?.types
+                ? getCategoryColor((pokemon as Pokemon).additionalData?.types!)
+                : getCategoryColor((pokemon as Pokemon2).types)
+            }
+          >
+            
+            {(
+              (pokemon as Pokemon).additionalData?.types ||
+              (pokemon as Pokemon2).types
+            )?.map((type) => (
               <StyleSingleCategory key={type.slot}>
                 <StyleNameUppercase>{type.type.name}</StyleNameUppercase>
               </StyleSingleCategory>

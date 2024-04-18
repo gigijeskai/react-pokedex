@@ -6,6 +6,7 @@ import { StyleNameUppercase } from "../card/stile";
 
 const PokemonsStatistics: FunctionComponent<PokemonStatsProps> = ({pokemon}) => {
   return (
+
     <StylePokemonsStatistics>
     <h3>Stats</h3>
     <Graph pokemon={pokemon} />

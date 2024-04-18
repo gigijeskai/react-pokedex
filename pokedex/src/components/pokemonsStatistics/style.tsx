@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const StylePokemonsStatistics = styled.div`
-    width: 100%;
+    
     padding-left: 5rem;
     `;
 

@@ -1,7 +1,7 @@
-import React, { FunctionComponent, useEffect, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
-import { fetchMoreData, fetchPokemonByName  } from "../../reducers/apiReducer";
+import { fetchMoreData  } from "../../reducers/apiReducer";
 import {StyleMain, StyleLoadPokemonButton} from "./style";
 import Card from "../card";
 import { Pokemon, Pokemon2 } from "../../interfaces/iPokemon";
